@@ -1,0 +1,30 @@
+﻿@model IEnumerable<VocabularyViewModel>
+
+@{
+    ViewData["Title"] = "List of vocabulary";
+}
+
+<form asp-action="Index" method="get">
+    <div class="form-row mx-0">
+        <input type="text" class="col form-control mr-2" name="searchString" placeholder="Type words to search" value="@ViewData["SearchString"]" />
+        <button type="submit" class="col-auto btn btn-primary">Search</button>
+    </div>
+</form>
+<div class="list-group mt-3">
+    @foreach (var vocabulary in Model)
+    {
+        <a class="list-group-item list-group-item-action" asp-action="Details" asp-route-id="@vocabulary.Id">
+            <div class="d-flex justify-content-between">
+                <h5 class="text-primary">@vocabulary.Words</h5>
+                <div>
+                    @foreach (var v in vocabulary.Variations)
+                    {
+                        <span class="mr-2">@v.Words</span>
+                    }
+                </div>
+            </div>
+            <div class="text-muted">@vocabulary.Definition.ContentEn</div>
+            <div class="ml-3 text-info">@vocabulary.Examples.FirstOrDefault().Example</div>
+        </a>
+    }
+</div>

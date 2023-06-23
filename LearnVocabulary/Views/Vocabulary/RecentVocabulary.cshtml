@@ -1,0 +1,40 @@
+﻿@model RecentVocabularyViewModel
+
+@{
+    ViewData["Title"] = "Recent Vocabulary";
+}
+
+@{
+    Task RenderRecentList()
+    {
+        <div class="d-flex flex-row flex-wrap flex-md-column">
+            @foreach (var v in Model.RecentVocabulary)
+            {
+                string linkClass = "btn btn-link btn-light";
+                if (v.Id == Model.SelectedVocabulary.Id)
+                {
+                    linkClass += " disabled";
+                }
+
+                @Html.ActionLink(v.Words, "RecentVocabulary", "Vocabulary", new { v.Id }, new { @class = linkClass })
+            }
+        </div>
+
+        return Task.CompletedTask;
+    }
+}
+
+<h5 class="text-primary">Recent vocabulary</h5>
+<div class="row">
+    <div class="col-12 col-md-auto mt-3">
+        @{await RenderRecentList(); }
+    </div>
+
+    <div class="col-12 col-md">
+        <partial name="_DetailsPartial" model="@Model.SelectedVocabulary" />
+    </div>
+
+    <div class="col-12 col-md-auto mt-3 d-md-none">
+        @{await RenderRecentList(); }
+    </div>
+</div>

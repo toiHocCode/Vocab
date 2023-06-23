@@ -1,0 +1,12 @@
+﻿@model VocabularyViewModel
+
+@{
+    ViewData["Title"] = "Details of " + Model.Words;
+}
+
+<partial name="_DetailsPartial" />
+
+<div class="text-right mt-2">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Delete</a>
+</div>

@@ -1,0 +1,19 @@
+﻿@model VocabularyViewModel
+
+@{
+    ViewData["Title"] = "Random Vocabulary";
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger">
+</div>
+
+@if (Model != null)
+{
+    <h5 class="text-primary">A random vocabulary</h5>
+
+    <partial name="_DetailsPartial" />
+    <div class="float-right clearfix">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary mr-1">Edit</a>
+        <a asp-action="Random" class="btn btn-primary">Next vocabulary</a>
+    </div>
+}

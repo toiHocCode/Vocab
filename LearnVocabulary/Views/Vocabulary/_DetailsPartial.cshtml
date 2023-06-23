@@ -1,0 +1,27 @@
+﻿@model VocabularyViewModel
+
+<div class="card border-0">
+    <div class="card-body">
+        <h5 class="card-title text-info">
+            <span>@Model.Words</span>
+            @foreach (var m in Model.Variations)
+            {
+                <span>@m.Words</span>
+            }
+        </h5>
+        <div class="card-text">
+            @Html.DisplayFor(model => model.Definition.ContentEn)
+        </div>
+        <div class="card-text text-secondary">
+            @Html.DisplayFor(model => model.Definition.ContentVi)
+        </div>
+    </div>
+    <ul class="list-group list-group-flush text-primary">
+        @foreach (var ex in Model.Examples)
+        {
+            <li class="list-group-item">
+                @ex.Example
+            </li>
+        }
+    </ul>
+</div>
